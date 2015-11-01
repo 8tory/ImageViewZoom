@@ -12,10 +12,12 @@ apply plugin: 'com.android.application'
 
 repositories {
     jcenter()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
-    compile project(':library')
+    //compile project(':library')
+    compile 'com.github.yongjhih:ImageViewZoom:8841c47da8'
 }
 
 android {
