@@ -24,8 +24,7 @@ import it.sephiroth.android.library.imagezoom.utils.IDisposable;
  * 
  */
 public abstract class ImageViewTouchBase extends ImageView implements IDisposable {
-
-    public static final String VERSION = "1.0.5-SNAPSHOT";
+    public static final String VERSION = BuildConfig.VERSION_NAME;
 
     public interface OnDrawableChangeListener {
 
