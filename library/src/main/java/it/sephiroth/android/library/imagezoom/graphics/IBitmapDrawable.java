@@ -1,7 +1,8 @@
 package it.sephiroth.android.library.imagezoom.graphics;
 
-import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 import android.graphics.Bitmap;
+
+import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 
 /**
  * Base interface used in the {@link ImageViewTouchBase} view
