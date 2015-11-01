@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     //compile project(':library')
-    compile 'com.github.yongjhih:ImageViewZoom:8841c47da8'
+    compile 'com.github.yongjhih:ImageViewZoom:d9667e107e'
 }
 
 android {
