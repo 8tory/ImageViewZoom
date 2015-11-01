@@ -25,6 +25,7 @@ import it.sephiroth.android.library.imagezoom.graphics.FastBitmapDrawable;
 import it.sephiroth.android.library.imagezoom.test.utils.DecodeUtils;
 
 public class ImageViewOverlay extends ImageViewTouch {
+	public static String TAG = "ImageViewOverlay";
 
 	protected Drawable mOverlayDrawable;
 	protected Drawable mOverlayTempDrawable;
@@ -95,31 +96,6 @@ public class ImageViewOverlay extends ImageViewTouch {
 		mOverlayBitmapRect.set(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		m.mapRect(mOverlayBitmapRect);
 		return mOverlayBitmapRect;
-	}
-
-	@Override
-	protected void getProperBaseMatrix(Drawable drawable, Matrix matrix, RectF rect) {
-		if (null == mOverlayDrawable) {
-			super.getProperBaseMatrix(drawable, matrix, rect);
-			return;
-		}
-
-		float w = drawable.getIntrinsicWidth();
-		float h = drawable.getIntrinsicHeight();
-		float widthScale, heightScale;
-
-		matrix.reset();
-
-		widthScale = rect.width() / w;
-		heightScale = rect.height() / h;
-		float scale = Math.max(widthScale, heightScale);
-		matrix.postScale(scale, scale);
-		matrix.postTranslate(rect.left, rect.top);
-
-		float tw = (rect.width() - w * scale) / 2.0f;
-		float th = (rect.height() - h * scale) / 2.0f;
-		matrix.postTranslate(tw, th);
-		printMatrix(matrix);
 	}
 
 	protected void getProperBaseMatrix2(Drawable drawable, Matrix matrix, RectF rect) {
@@ -214,16 +190,6 @@ public class ImageViewOverlay extends ImageViewTouch {
 	}
 
 	@Override
-	protected void onViewPortChanged(final float left, final float top, final float right, final float bottom) {
-		if (null == mOverlayDrawable) {
-			super.onViewPortChanged(left, top, right, bottom);
-		}
-		else {
-			super.onViewPortChanged(mTempViewPort.left, mTempViewPort.top, mTempViewPort.right, mTempViewPort.bottom);
-		}
-	}
-
-	@Override
 	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		Log.i(TAG, "onLayout(" + left + ", " + top + ", " + right + ", " + bottom + ")");
 
@@ -243,7 +209,7 @@ public class ImageViewOverlay extends ImageViewTouch {
 			}
 		}
 
-		if (changed || mBitmapChanged) {
+		if (changed) {
 			Drawable drawable = getDrawable();
 			if (null != drawable && null != mOverlayDrawable) {
 
@@ -267,7 +233,7 @@ public class ImageViewOverlay extends ImageViewTouch {
 		}
 
 		if (null != mOverlayDrawable) {
-			if (changed || mBitmapChanged) {
+			if (changed) {
 				mBaseMatrix2.reset();
 				mSuppMatrix2.reset();
 
@@ -292,8 +258,6 @@ public class ImageViewOverlay extends ImageViewTouch {
 
 		saveCount = canvas.getSaveCount();
 		canvas.save();
-
-		canvas.clipRect(mViewPort);
 
 		if (drawMatrix != null) {
 			canvas.concat(drawMatrix);
