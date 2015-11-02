@@ -1,6 +1,4 @@
-ImageViewTouch for Android
-===
-
+# ImageViewTouch for Android
 
 ImageViewTouch is an android `ImageView` widget with zoom and pan capabilities.
 This is an implementation of the ImageView widget used in the Gallery app of the Android opensource project.
@@ -14,8 +12,10 @@ Beside the superclass **setImageBitmap** method it offers the following methods:
 
 If you want to load a new Bitmap with a particular zoom/pan state (let's say the same from another ImageView ), you can call:
 
-	Matrix matrix = mImageView1.getDisplayMatrix();
-	mImageView2.setImageBitmap( bitmap, matrix );
+```java
+Matrix matrix = mImageView1.getDisplayMatrix();
+mImageView2.setImageBitmap( bitmap, matrix );
+```
 
 
 ## Tweaks
@@ -28,25 +28,25 @@ The initial display state can be set, using `public void setDisplayType( Display
 The default display state is `DisplayState.NONE'.
 
 
-##Usage (Maven)
-    <dependency>
-        <groupId>it.sephiroth.android.library.imagezoom</groupId>
-        <artifactId>imagezoom</artifactId>
-        <version>1.0.5</version>
-    </dependency>
+## Usage
 
-##Usage (Gradle)
+```gradle
+repositories {
+    // ...
+    maven { url "https://jitpack.io" }
+}
 
-	dependencies {
-		compile 'it.sephiroth.android.library.imagezoom:imagezoom:+'
-	}
+dependencies {
+    compile 'com.github.yongjhih:ImageViewZoom:-SNAPSHOT'
+}
+```
 
-##LICENSE
+## LICENSE
 
 This software is provided under the MIT license:<br />
 http://opensource.org/licenses/mit-license.php
 
 
-##Author
+## Author
 
 [Alessandro Crugnola](http://blog.sephiroth.it)
